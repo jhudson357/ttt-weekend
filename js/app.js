@@ -1,6 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 const squareEls = document.querySelectorAll('.square')
 const messageEl = document.querySelector('#message')
+const boardEl = document.querySelector('.board')
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -18,7 +19,7 @@ let board, turn, winner
 
 /*------------------------ Cached Element References ------------------------*/
 
-
+boardEl.addEventListener('click', handleClick)
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -30,7 +31,8 @@ init()
 
 
 function init() {
-  board = [null, null, null, null, null, null, null, null, null]
+  //board = [null, null, null, null, null, null, null, null, null]
+  board = [1, -1, 1, null, 1, null, -1, null, 1]
   turn = 1
   winner = null
   render()
@@ -62,6 +64,28 @@ function render() {
   }
 }
 
+function handleClick(evt) {
+  // obtain the index of the square that was clicked
+  const sqIdx = parseInt(evt.target.id.slice(2))
+  //console.log(sqIdx, 'is the index of the square clicked')
+  //console.log(board[sqIdx], 'is the value of the square clicked')
+  
+  if (board[sqIdx] !== null || winner !== null) {
+    return
+  }
+
+  board[sqIdx] = turn
+  turn = turn * -1
+  
+  if (winner === 1 || winner === -1) {
+    getWinner()
+  }
+  render()
+}
+
+function getWinner() {
+  
+}
 
 //// Step 1 - Define the required variables used to track the state of the game
 
