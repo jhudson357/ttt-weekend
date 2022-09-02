@@ -1,7 +1,16 @@
 /*-------------------------------- Constants --------------------------------*/
 const squareEls = document.querySelectorAll('.square')
 const messageEl = document.querySelector('#message')
-
+const winningCombos = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+]
 
 /*---------------------------- Variables (state) ----------------------------*/
 
@@ -106,10 +115,10 @@ function render() {
   ////       won.
     
 
-// Step 5 - Define the required constants
+//// Step 5 - Define the required constants
 
-  // 5a) In a constant called `winningCombos` define the eight possible winning 
-  //     combinations as an array of arrays.
+  //// 5a) In a constant called `winningCombos` define the eight possible winning 
+  ////     combinations as an array of arrays.
 
 // Step 6 - Handle a player clicking a square with a `handleClick` function
 
