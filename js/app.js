@@ -1,8 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 const squareEls = document.querySelector('.square')
 const messageEl = document.querySelector('#message')
-console.log(squareEls)
-console.log(messageEl)
 
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -19,45 +17,57 @@ let board, turn, winner
 
 /*-------------------------------- Functions --------------------------------*/
 
+init()
+
+
+function init() {
+  board = [null, null, null, null, null, null, null, null, null]
+  turn = 1
+  winner = null
+  render()
+}
+
+
+
 
 //// Step 1 - Define the required variables used to track the state of the game
 
-  // 1a) Use a variable named `board` to represent the state of the squares on
-  //    the board.
+  //// 1a) Use a variable named `board` to represent the state of the squares on
+  ////    the board.
 
-  // 1b) Use a variable named `turn` to track whose turn it is.
+  //// 1b) Use a variable named `turn` to track whose turn it is.
 
-  // 1c) Use a variable named `winner` to represent if anyone has won yet, or 
-  //    if a tie has occurred.
+  //// 1c) Use a variable named `winner` to represent if anyone has won yet, or 
+  ////    if a tie has occurred.
 
 //// Step 2 - Store cached element references
 
-  // 2a) In a constant called `squareEls`, store the nine elements 
-  //    representing the squares on the page.
+  //// 2a) In a constant called `squareEls`, store the nine elements 
+  ////    representing the squares on the page.
 
-  // 2b) In a constant called `messageEl`, store the element that displays the 
-  //    game's status on the page.
+  //// 2b) In a constant called `messageEl`, store the element that displays the 
+  ////    game's status on the page.
 
 
-// Step 3 - Upon loading, the game state should be initialized, and a function 
-//          should be called to render this game state
+//// Step 3 - Upon loading, the game state should be initialized, and a function 
+////          should be called to render this game state
 
-  // 3a) Create a function called `init`.
+  //// 3a) Create a function called `init`.
 
-  // 3b) Call this `init` function when the app loads.
+  //// 3b) Call this `init` function when the app loads.
 
-  // 3c) Set the `board` variable to an array containing nine `null`s to 
-  //    represent empty squares.
+  //// 3c) Set the `board` variable to an array containing nine `null`s to 
+  ////    represent empty squares.
 
-  // 3d) Set the `turn` to `1` - which will represent player X.
+  //// 3d) Set the `turn` to `1` - which will represent player X.
 
-  // 3e) Set the `winner` to `null`.
+  //// 3e) Set the `winner` to `null`.
 
-  // 3f) Call a function called `render` at the end of the `init` function.
+  //// 3f) Call a function called `render` at the end of the `init` function.
 
 // Step 4 - The state of the game should be rendered to the user
 
-  // 4a) Create a function called `render`.
+  //// 4a) Create a function called `render`.
 
   // 4b) Loop over `board` and for each element:
   //     - Use the current index of the iteration to access the corresponding 
