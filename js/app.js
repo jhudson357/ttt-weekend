@@ -19,10 +19,10 @@ let board, turn, winner
 
 /*------------------------ Cached Element References ------------------------*/
 
-boardEl.addEventListener('click', handleClick)
 
 /*----------------------------- Event Listeners -----------------------------*/
 
+boardEl.addEventListener('click', handleClick)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -31,8 +31,8 @@ init()
 
 
 function init() {
-  //board = [null, null, null, null, null, null, null, null, null]
-  board = [1, -1, 1, null, 1, null, -1, null, 1]
+  board = [null, null, null, null, null, null, null, null, null]
+  //board = [1, -1, 1, null, 1, null, -1, -1, -1]
   turn = 1
   winner = null
   render()
@@ -60,7 +60,7 @@ function render() {
   } else if (winner === 'T') {
     messageEl.textContent = `The game is a tie`
   } else {
-    messageEl.textContent = `Congratulations Player ${winner}! You won!`
+    messageEl.textContent = `Player ${winner} wins!`
   }
 }
 
@@ -77,15 +77,77 @@ function handleClick(evt) {
   board[sqIdx] = turn
   turn = turn * -1
   
-  if (winner === 1 || winner === -1) {
-    getWinner()
-  }
+  getWinner()
   render()
 }
 
+
+// function getWinner() {
+//   let sumArray = 0
+//   winningCombos.forEach(function(array) {   // 1 array is one of the winning array combos
+//     sumArray = Math.abs(array.reduce((acc, num) => acc + board[num], 0))
+//     console.log(`${sumArray} - is the sum of the array and ${board[array[0]]} is the player of the winning combo ${array}`)
+//     //console.log(board[array[0]], 'board[array[0]]')
+//     //console.log(winner, 'winner')
+    
+//   })
+//   // check for winner or tie or null
+//   if (sumArray === 3) {
+//     winner = board[array[0]]
+//     console.log(winner, 'is a the winner')
+//     return winner
+//   } else if (board.forEach((space) => space !== null)) {
+//     winner = 'T'
+//     console.log(winner, 'tie')
+//     return winner
+//   } else {
+//     winner = null
+//     console.log(winner, 'the game is still being played')
+//     return winner
+//   }
+// }
+
+
 function getWinner() {
-  
-}
+  //console.log(Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0)))
+  sumCombo1 = Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0))
+  sumCombo2 = Math.abs(winningCombos[1].reduce((acc, num) => acc + board[num], 0))
+  sumCombo3 = Math.abs(winningCombos[2].reduce((acc, num) => acc + board[num], 0))
+  sumCombo4 = Math.abs(winningCombos[3].reduce((acc, num) => acc + board[num], 0))
+  sumCombo5 = Math.abs(winningCombos[4].reduce((acc, num) => acc + board[num], 0))
+  sumCombo6 = Math.abs(winningCombos[5].reduce((acc, num) => acc + board[num], 0))
+  sumCombo7 = Math.abs(winningCombos[6].reduce((acc, num) => acc + board[num], 0))
+  sumCombo8 = Math.abs(winningCombos[7].reduce((acc, num) => acc + board[num], 0))
+
+  if (sumCombo1 === 3) {
+    winner = board[winningCombos[0][0]]
+  } else if (sumCombo2 === 3) {
+    winner = board[winningCombos[1][0]]
+  } else if (sumCombo3 === 3) {
+    winner = board[winningCombos[2][0]]
+  } else if (sumCombo4 === 3) {
+    winner = board[winningCombos[3][0]]
+  } else if (sumCombo5 === 3) {
+    winner = board[winningCombos[4][0]]
+  } else if (sumCombo6 === 3) {
+    winner = board[winningCombos[5][0]]
+  } else if (sumCombo7 === 3) {
+    winner = board[winningCombos[6][0]]
+  } else if (sumCombo8 === 3) {
+    winner = board[winningCombos[7][0]]
+  } else if (!board.includes(null)) {
+    winner = 'T'
+  } else {
+    winner = null
+  }
+} 
+
+
+
+
+
+
+
 
 //// Step 1 - Define the required variables used to track the state of the game
 
