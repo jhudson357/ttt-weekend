@@ -58,11 +58,13 @@ function render() {
 
   // render a message based on the current state
   if (winner === null) {
-    messageEl.textContent = `It is Player ${turn}'s turn`
+    let turnChooser = turn === 1 ? '1' : '2'
+    messageEl.textContent = `Player ${turnChooser}'s turn`
   } else if (winner === 'T') {
-    messageEl.textContent = `The game is a tie`
+    messageEl.textContent = `It's a tie`
   } else {
-    messageEl.textContent = `Player ${winner} wins!`
+    let player = turn === -1 ? '1' : '2'
+    messageEl.textContent = `Player ${player} wins!`
   }
 }
 
