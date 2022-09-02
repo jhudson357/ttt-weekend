@@ -2,6 +2,7 @@
 const squareEls = document.querySelectorAll('.square')
 const messageEl = document.querySelector('#message')
 const boardEl = document.querySelector('.board')
+const resetBtnEl = document.querySelector('#reset-button')
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -23,6 +24,7 @@ let board, turn, winner
 /*----------------------------- Event Listeners -----------------------------*/
 
 boardEl.addEventListener('click', handleClick)
+resetBtnEl.addEventListener('click', init)
 
 
 /*-------------------------------- Functions --------------------------------*/
