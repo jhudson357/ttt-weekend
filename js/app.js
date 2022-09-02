@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-const squareEls = document.querySelector('.square')
+const squareEls = document.querySelectorAll('.square')
 const messageEl = document.querySelector('#message')
 
 
@@ -28,6 +28,30 @@ function init() {
 }
 
 
+function render() {
+  board.forEach(function(value, idx) {
+    
+    // Style that square depending on the value contained in the current cell being iterated over
+    if (value === 1) {
+      squareEls[idx].textContent = 'X'
+      squareEls[idx].style.color = 'blue'
+    } else if (value === -1) {
+      squareEls[idx].textContent = 'O'
+      squareEls[idx].style.color = 'red'
+    } else if (value === null) {
+      squareEls[idx].textContent = ''
+    }
+  } )
+
+  // render a message based on the current state
+  if (winner === null) {
+    messageEl.textContent = `It is Player ${turn}'s turn`
+  } else if (winner === 'T') {
+    messageEl.textContent = `The game is a tie`
+  } else {
+    messageEl.textContent = `Congratulations Player ${winner}! You won!`
+  }
+}
 
 
 //// Step 1 - Define the required variables used to track the state of the game
@@ -65,23 +89,21 @@ function init() {
 
   //// 3f) Call a function called `render` at the end of the `init` function.
 
-// Step 4 - The state of the game should be rendered to the user
+//// Step 4 - The state of the game should be rendered to the user
 
   //// 4a) Create a function called `render`.
-
-  // 4b) Loop over `board` and for each element:
-  //     - Use the current index of the iteration to access the corresponding 
-  //       square in the `squareEls` array.
-  //     - Style that square however you wish, dependent on the value  
-  //       contained in the current cell being iterated over (`-1`, `1`, or
-  //       `null`).  
+  //// 4b) Loop over `board` and for each element:
+  ////       square in the `squareEls` array.
+  ////     - Style that square however you wish, dependent on the value  
+  ////       contained in the current cell being iterated over (`-1`, `1`, or
+  ////       `null`). 
   
-  // 4c) Render a message based on the current game state:
-  //     - If winner has a value of `null` (meaning the game is still in
-  //       progress), render whose turn it is.
-  //     - If `winner` is equal to `'T'` (tie), render a tie message.
-  //     - Otherwise, render a congratulatory message to the player that has 
-  //       won.
+  //// 4c) Render a message based on the current game state:
+  ////     - If winner has a value of `null` (meaning the game is still in
+  ////       progress), render whose turn it is.
+  ////     - If `winner` is equal to `'T'` (tie), render a tie message.
+  ////     - Otherwise, render a congratulatory message to the player that has 
+  ////       won.
     
 
 // Step 5 - Define the required constants
