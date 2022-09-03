@@ -16,7 +16,7 @@ const winningCombos = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board, turn, winner
+let board, turn, winner, clicks
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -34,9 +34,10 @@ init()
 
 function init() {
   board = [null, null, null, null, null, null, null, null, null]
-  //board = [1, -1, 1, null, 1, null, -1, -1, -1]
+  //board = [-1, -1, 1, 1, -1, -1, 1, 1, null]
   turn = 1
   winner = null
+  clicks = 0
   render()
 }
 
@@ -85,80 +86,65 @@ function handleClick(evt) {
   render()
 }
 
-
-
-
 function getWinner() {
-  //console.log(Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0)))
-  sumCombo1 = Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0))
-  sumCombo2 = Math.abs(winningCombos[1].reduce((acc, num) => acc + board[num], 0))
-  sumCombo3 = Math.abs(winningCombos[2].reduce((acc, num) => acc + board[num], 0))
-  sumCombo4 = Math.abs(winningCombos[3].reduce((acc, num) => acc + board[num], 0))
-  sumCombo5 = Math.abs(winningCombos[4].reduce((acc, num) => acc + board[num], 0))
-  sumCombo6 = Math.abs(winningCombos[5].reduce((acc, num) => acc + board[num], 0))
-  sumCombo7 = Math.abs(winningCombos[6].reduce((acc, num) => acc + board[num], 0))
-  sumCombo8 = Math.abs(winningCombos[7].reduce((acc, num) => acc + board[num], 0))
+  clicks++
+  //console.log(clicks)
+  for (combo of winningCombos) {
+    let sumCombo = Math.abs(board[combo[0]] + board[combo[1]] + board[combo[2]])
 
-  if (sumCombo1 === 3) {
-    winner = board[winningCombos[0][0]]
-  } else if (sumCombo2 === 3) {
-    winner = board[winningCombos[1][0]]
-  } else if (sumCombo3 === 3) {
-    winner = board[winningCombos[2][0]]
-  } else if (sumCombo4 === 3) {
-    winner = board[winningCombos[3][0]]
-  } else if (sumCombo5 === 3) {
-    winner = board[winningCombos[4][0]]
-  } else if (sumCombo6 === 3) {
-    winner = board[winningCombos[5][0]]
-  } else if (sumCombo7 === 3) {
-    winner = board[winningCombos[6][0]]
-  } else if (sumCombo8 === 3) {
-    winner = board[winningCombos[7][0]]
-  } else if (!board.includes(null)) {
-    winner = 'T'
-  } else {
-    winner = null
+    //console.log(sumCombo, 'combo:', combo, clicks)
+
+    if (clicks < 9) {
+      if (sumCombo === 3) {
+        winner = board[combo[0]]
+        //console.log(sumCombo +' '+ winner)
+      }
+    } else if (clicks === 9) {
+      if (sumCombo === 3) {
+        winner = board[combo[0]]
+        //console.log('clicks is', clicks)
+        return winner
+      } else {
+        winner = 'T'
+      }
+    }
   }
-} 
+}
+
 
 // function getWinner() {
-//   winningCombos.forEach(function(combo) {   // 1 combo is one of the winning combos
-//     let sumCombo = Math.abs(board[combo[0]] + board[combo[1]] + board[combo[2]])
-//     console.log('Combo', combo, sumCombo)
+//   //console.log(Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0)))
+//   sumCombo1 = Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo2 = Math.abs(winningCombos[1].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo3 = Math.abs(winningCombos[2].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo4 = Math.abs(winningCombos[3].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo5 = Math.abs(winningCombos[4].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo6 = Math.abs(winningCombos[5].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo7 = Math.abs(winningCombos[6].reduce((acc, num) => acc + board[num], 0))
+//   sumCombo8 = Math.abs(winningCombos[7].reduce((acc, num) => acc + board[num], 0))
 
-//     if (winner === null) {
-//       if (sumCombo === 3) {
-//         winner = board[combo[0]]
-//         return winner
-//       } else if (!board.includes(null) && sumCombo !== 3) {
-//         winner = 'T'
-//         return winner
-//       } else {
-//         winner = null
-//         return winner
-//       }
-//     } 
-//   })
-// }
-
-// function getWinner() {
-//   let comboSum = 0
-//   for (i=0; i<winningCombos.length; i++) {
-//     comboSum = Math.abs(board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]])
-//   }
-//   console.log(`${comboSum}`)  
-//   if (comboSum === 3) {
-//     winner = board[winningCombos[i][0]]
-//     return winner
+//   if (sumCombo1 === 3) {
+//     winner = board[winningCombos[0][0]]
+//   } else if (sumCombo2 === 3) {
+//     winner = board[winningCombos[1][0]]
+//   } else if (sumCombo3 === 3) {
+//     winner = board[winningCombos[2][0]]
+//   } else if (sumCombo4 === 3) {
+//     winner = board[winningCombos[3][0]]
+//   } else if (sumCombo5 === 3) {
+//     winner = board[winningCombos[4][0]]
+//   } else if (sumCombo6 === 3) {
+//     winner = board[winningCombos[5][0]]
+//   } else if (sumCombo7 === 3) {
+//     winner = board[winningCombos[6][0]]
+//   } else if (sumCombo8 === 3) {
+//     winner = board[winningCombos[7][0]]
 //   } else if (!board.includes(null)) {
 //     winner = 'T'
-//     return winner
 //   } else {
 //     winner = null
-//     return winner
 //   }
-// }
+// } 
 
 
 
