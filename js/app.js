@@ -1,10 +1,4 @@
 /*-------------------------------- Constants --------------------------------*/
-const squareEls = document.querySelectorAll('.square')
-const messageEl = document.querySelector('#message')
-const boardEl = document.querySelector('.board')
-const resetBtnEl = document.querySelector('#reset-button')
-const rocketScore = document.querySelector('#rocket-score')
-const ufoScore = document.querySelector('#ufo-score')
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -24,6 +18,12 @@ let ufoCounter = 0
 
 /*------------------------ Cached Element References ------------------------*/
 
+const squareEls = document.querySelectorAll('.square')
+const messageEl = document.querySelector('#message')
+const boardEl = document.querySelector('.board')
+const resetBtnEl = document.querySelector('#reset-button')
+const rocketScore = document.querySelector('#rocket-score')
+const ufoScore = document.querySelector('#ufo-score')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
