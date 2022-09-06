@@ -49,10 +49,8 @@ function render() {
     // Style that square depending on the value contained in the current cell being iterated over
     if (value === 1) {
       squareEls[idx].textContent = '🚀'
-      squareEls[idx].style.color = 'blue'
     } else if (value === -1) {
       squareEls[idx].textContent = '🛸'
-      squareEls[idx].style.color = 'red'
     } else if (value === null) {
       squareEls[idx].textContent = ''
     }
