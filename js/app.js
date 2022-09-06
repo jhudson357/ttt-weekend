@@ -38,6 +38,7 @@ function init() {
   turn = 1
   winner = null
   clicks = 0
+  resetBtnEl.setAttribute('hidden', true)
   render()
 }
 
@@ -47,10 +48,10 @@ function render() {
     
     // Style that square depending on the value contained in the current cell being iterated over
     if (value === 1) {
-      squareEls[idx].textContent = 'X'
+      squareEls[idx].textContent = '🚀'
       squareEls[idx].style.color = 'blue'
     } else if (value === -1) {
-      squareEls[idx].textContent = 'O'
+      squareEls[idx].textContent = '🛸'
       squareEls[idx].style.color = 'red'
     } else if (value === null) {
       squareEls[idx].textContent = ''
@@ -59,14 +60,19 @@ function render() {
 
   // render a message based on the current state
   if (winner === null) {
-    let turnChooser = turn === 1 ? '1' : '2'
-    messageEl.textContent = `Player ${turnChooser}'s turn`
+    let turnChooser = turn === 1 ? '🚀' : '🛸'
+    messageEl.textContent = `${turnChooser}'s turn`
   } else if (winner === 'T') {
     messageEl.textContent = `It's a tie`
   } else {
-    let player = turn === -1 ? '1' : '2'
-    messageEl.textContent = `Player ${player} wins!`
+    let player = turn === -1 ? '🚀' : '🛸'
+    messageEl.textContent = `${player} wins!`
   }
+
+  // display the reset button
+  if (clicks === 1) {
+    resetBtnEl.removeAttribute('hidden')
+  } 
 }
 
 function handleClick(evt) {
@@ -111,7 +117,7 @@ function getWinner() {
   }
 }
 
-
+//alternate getWinner function that works
 // function getWinner() {
 //   //console.log(Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0)))
 //   sumCombo1 = Math.abs(winningCombos[0].reduce((acc, num) => acc + board[num], 0))
