@@ -1,8 +1,13 @@
 /*-------------------------------- Constants --------------------------------*/
 const squareEls = document.querySelectorAll('.square')
 const messageEl = document.querySelector('#message')
+console.log(messageEl)
 const boardEl = document.querySelector('.board')
 const resetBtnEl = document.querySelector('#reset-button')
+const rocketScore = document.querySelector('#rocket-score')
+console.log(rocketScore)
+const ufoScore = document.querySelector('#ufo-score')
+console.log(ufoScore)
 const winningCombos = [
   [0, 1, 2],
   [3, 4, 5],
@@ -17,6 +22,8 @@ const winningCombos = [
 /*---------------------------- Variables (state) ----------------------------*/
 
 let board, turn, winner, clicks
+let rocketCounter = 0
+let ufoCounter = 0
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -71,7 +78,18 @@ function render() {
   // display the reset button
   if (clicks === 1) {
     resetBtnEl.removeAttribute('hidden')
-  } 
+  }
+
+  // update the score board
+  if(winner === 1) {
+    rocketCounter += 1
+    rocketScore.textContent = rocketCounter
+    //console.log(rocketCounter, 'rocketCounter')
+  } else if (winner === -1) {
+    ufoCounter += 1
+    ufoScore.textContent = ufoCounter
+    //console.log(ufoCounter, 'ufoCounter')
+  }
 }
 
 function handleClick(evt) {
