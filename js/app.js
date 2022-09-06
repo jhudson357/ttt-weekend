@@ -65,6 +65,7 @@ function render() {
   } else {
     let player = turn === -1 ? '🚀' : '🛸'
     messageEl.textContent = `${player} wins!`
+    messageEl.classList.add('animate__animated', 'animate__flash')
   }
 
   // display the reset button
